@@ -1,63 +1,32 @@
-export default function ColorForm() {
+import ColorInput from './ColorInput';
+
+export default function ColorForm({ colors }) {
    function handleSubmit(e) {
       e.preventDefault();
       const formData = new FormData(e.target);
-      console.log(e);
       const data = Object.fromEntries(formData);
+      console.log(data);
    }
 
    return (
       <form
          data-js="form"
-         onSubmit={(e) => handleSubmit(e)}
+         onSubmit={handleSubmit}
       >
-         <div>
-            <label
-               name="role"
-               htmlFor="role"
-            >
-               Role
-            </label>
+         <fieldset>
+            <label htmlFor="role">Role</label>
             <input
+               type="text"
                id="role"
-               placeholder="Some color"
-               type="text"
+               name="role"
+               placeholder="Role"
             />
-         </div>
-         <div>
-            <label
-               name="hex"
-               htmlFor="hex"
-            >
-               Hex
-            </label>
-            <input
-               id="hex"
-               type="text"
-               placeholder="#0000"
-            />
-            <input
-               id="hex"
-               type="color"
-            />
-         </div>
-         <div>
-            <label
-               name="contrast"
-               htmlFor="contrast"
-            >
-               Contrast Text
-            </label>
-            <input
-               id="hex"
-               type="text"
-               placeholder="#0000"
-            />
-            <input
-               id="contrast"
-               type="color"
-            />
-         </div>
+         </fieldset>
+         <fieldset>
+            <ColorInput name="hex">Hex</ColorInput>
+            <ColorInput name="contrastText">Text Contrast</ColorInput>
+         </fieldset>
+
          <button type="submit">Submit</button>
       </form>
    );
