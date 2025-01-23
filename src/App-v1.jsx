@@ -1,15 +1,23 @@
 import { initialColors } from './lib/colors';
-import { nanoid } from 'nanoid';
 
 import ColorForm from './Components/Form/ColorForm';
 import Color from './Components/Color/Color';
 import './App.css';
 import { useState } from 'react';
 
+// const testColor = {
+//    id: 'c1',
+//    role: 'primary main',
+//    hex: '#ff4a11',
+//    contrastText: '#FFFFFF',
+// };
+
 function App() {
-   const [colors, setColors] = useState(initialColors);
-   function handleAddColor(newData) {
-      setColors((colors) => [{ id: nanoid(), ...newData }, ...colors]);
+   const [currColor, setCurrColor] = useState('#00e089');
+
+   function handleColorChange(e) {
+      let newColor = e.target.value;
+      setCurrColor((currColor) => (currColor = newColor));
    }
 
    return (
@@ -17,10 +25,10 @@ function App() {
          <h1>Theme Creator</h1>
 
          <ColorForm
-            onSubmit={handleAddColor}
-            colors={initialColors}
+            onColorChange={handleColorChange}
+            currColor={currColor}
          />
-         {colors.map((color) => {
+         {initialColors.map((color) => {
             return (
                <Color
                   key={color.id}
