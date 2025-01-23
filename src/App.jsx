@@ -12,6 +12,10 @@ function App() {
       setColors((colors) => [{ id: nanoid(), ...newData }, ...colors]);
    }
 
+   function handleDeleteItem(id) {
+      setColors((colors) => colors.filter((color) => color.id !== id));
+   }
+
    return (
       <>
          <h1>Theme Creator</h1>
@@ -25,6 +29,7 @@ function App() {
                <Color
                   key={color.id}
                   color={color}
+                  onDeleteColor={handleDeleteItem}
                />
             );
          })}

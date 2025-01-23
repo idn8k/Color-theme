@@ -1,11 +1,18 @@
 .color-card {
-  margin: 0px 10px;
-  padding: 5px;
+   margin: 0px 10px;
+   padding: 5px;
 }
 
 .color-card-headline {
-  display: inline;
-  padding: 2px 6px;
-  background: black;
-  color: white;
+   display: inline;
+   padding: 2px 6px;
+   background: black;
+   color: white;
+}
+
+.color-ops {
+   display: flex;
+   align-items: center;
+   padding: 5px;
+   max-width: 20%;
 }
