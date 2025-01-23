@@ -1,42 +1,26 @@
-import { nanoid } from 'nanoid';
-import { Fragment } from 'react';
 import { useState } from 'react';
-nanoid;
 
-const tempColor = {
-   id: 'c5',
-   role: 'secondary dark',
-   hex: '#3949AB',
-   contrastText: '#FFFFFF',
-};
+export default function ColorInput({ name, value }) {
+   const [input, setInput] = useState(value);
 
-export default function ColorInput({ children, name }) {
-   const [color, setColor] = useState([tempColor]);
-   console.log(color);
-
-   function handleColorChange(e) {
-      let newColor = e.target.value;
-      setColor((color) => [...color, { id: nanoid(), newColor }]);
+   function handleChange(e) {
+      setInput(e.target.value);
    }
+
    return (
-      <Fragment>
-         <label htmlFor={name}>{children}</label>
-
+      <>
          <input
-            onChange={handleColorChange}
+            onChange={handleChange}
             type="text"
-            id={name}
             name={name}
-            defaultValue={color[0].hex}
+            id={name}
+            value={input}
          />
-
          <input
-            onChange={handleColorChange}
+            onChange={handleChange}
             type="color"
-            id={name}
-            name={name}
-            defaultValue={color[0].contrastText}
+            value={input}
          />
-      </Fragment>
+      </>
    );
 }
