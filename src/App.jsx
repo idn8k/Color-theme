@@ -41,16 +41,18 @@ function App() {
             onSubmit={handleAddColor}
             colors={colors}
          />
-         {colors.map((color) => {
-            return (
-               <Color
-                  key={color.id}
-                  color={color}
-                  onDeleteColor={handleDeleteItem}
-                  onEditCard={handleEditCard}
-               />
-            );
-         })}
+         <section className="cards-container">
+            {colors.map((color) => {
+               return (
+                  <Color
+                     key={color.id}
+                     color={color}
+                     onDeleteColor={handleDeleteItem}
+                     onEditCard={handleEditCard}
+                  />
+               );
+            })}
+         </section>
       </>
    );
 }
