@@ -16,13 +16,27 @@ function App() {
       setColors((colors) => colors.filter((color) => color.id !== id));
    }
 
+   function handleEditCard(newData, itemId) {
+      const newArr = colors.map((color) => {
+         if (color.id === itemId)
+            return {
+               ...color,
+               role: newData.role,
+               hex: newData.hex,
+               contrastText: newData.contrastText,
+            };
+         return color;
+      });
+      setColors(newArr);
+   }
+
    return (
       <>
          <h1>Theme Creator</h1>
 
          <ColorForm
             onSubmit={handleAddColor}
-            colors={initialColors}
+            colors={colors}
          />
          {colors.map((color) => {
             return (
@@ -30,6 +44,7 @@ function App() {
                   key={color.id}
                   color={color}
                   onDeleteColor={handleDeleteItem}
+                  onEditCard={handleEditCard}
                />
             );
          })}
