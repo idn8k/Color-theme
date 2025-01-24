@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './Color.css';
 
 import ColorInput from '../Form/ColorInput';
@@ -6,6 +6,16 @@ import ColorInput from '../Form/ColorInput';
 export default function Color({ color, onDeleteColor, onEditCard }) {
    const [showConfirmation, setShowConfirmation] = useState(false);
    const [showEditBox, setShowEditBox] = useState(false);
+   const [isCopied, setIsCopied] = useState(false);
+
+   useEffect(
+      function () {
+         setTimeout(() => {
+            setIsCopied(false);
+         }, 3000);
+      },
+      [isCopied]
+   );
 
    function handleDelete() {
       setShowConfirmation(true);
@@ -34,6 +44,15 @@ export default function Color({ color, onDeleteColor, onEditCard }) {
       setShowEditBox(!showEditBox);
    }
 
+   async function handleCopyClipboard(input) {
+      try {
+         await navigator.clipboard.writeText(input);
+      } catch (error) {
+         console.error('Error:', error.message);
+      }
+      setIsCopied(true);
+   }
+
    return (
       <div
          className="color-card"
@@ -44,6 +63,12 @@ export default function Color({ color, onDeleteColor, onEditCard }) {
       >
          <h3 className="color-card-headline">{color.hex}</h3>
          <h4>{color.role}</h4>
+         {isCopied ? (
+            <p>Copied to clipboard!</p>
+         ) : (
+            <button onClick={() => handleCopyClipboard(color.hex)}>Copy</button>
+         )}
+
          <p>contrast: {color.contrastText}</p>
          {!showConfirmation && <button onClick={handleDelete}>Delete</button>}
          {showConfirmation && (
