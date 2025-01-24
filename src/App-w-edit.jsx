@@ -1,16 +1,13 @@
 import { initialColors } from './lib/colors';
 import { nanoid } from 'nanoid';
-import useLocalStorageState from 'use-local-storage-state';
 
 import ColorForm from './Components/Form/ColorForm';
 import Color from './Components/Color/Color';
 import './App.css';
+import { useState } from 'react';
 
 function App() {
-   const [colors, setColors] = useLocalStorageState('colors', {
-      defaultValue: initialColors,
-   });
-
+   const [colors, setColors] = useState(initialColors);
    function handleAddColor(newData) {
       setColors((colors) => [{ id: nanoid(), ...newData }, ...colors]);
    }
@@ -56,3 +53,5 @@ function App() {
 }
 
 export default App;
+
+// Found the fixed issue!!
