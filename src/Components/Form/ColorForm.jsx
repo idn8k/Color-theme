@@ -1,4 +1,5 @@
 import ColorInput from './ColorInput';
+import '../../Components/Form/form.css';
 
 export default function ColorForm({
    onSubmit,
