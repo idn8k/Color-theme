@@ -1,0 +1,14 @@
+.color-inputs-container {
+   position: relative;
+}
+
+.color-box {
+   width: 25px;
+   height: 25px;
+   position: absolute;
+   border: none;
+   background: none;
+   top: 50%;
+   right: 12px;
+   transform: translateY(-50%);
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../Form/ColorInput.css';
 
 export default function ColorInput({ name, value }) {
    const [input, setInput] = useState(value);
@@ -8,8 +9,9 @@ export default function ColorInput({ name, value }) {
    }
 
    return (
-      <>
+      <div className="color-inputs-container">
          <input
+            className="hex"
             onChange={handleChange}
             type="text"
             name={name}
@@ -17,10 +19,11 @@ export default function ColorInput({ name, value }) {
             value={input}
          />
          <input
+            className="color-box"
             onChange={handleChange}
             type="color"
             value={input}
          />
-      </>
+      </div>
    );
 }
