@@ -1,0 +1,23 @@
+.color-inputs-container {
+   position: relative;
+   display: flex;
+}
+
+.color-box {
+   width: 70px;
+   height: 70px;
+   position: absolute;
+   border: none;
+   background: none;
+   top: 38%;
+   right: 8px;
+   transform: translateY(-50%);
+}
+
+input {
+   width: 100%;
+   border: none;
+   padding: 16px;
+   border-radius: 12px;
+   margin: 12px auto;
+}
